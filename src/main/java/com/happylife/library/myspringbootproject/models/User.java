@@ -14,7 +14,7 @@ import java.util.Set;
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(
                 name = User.NamedQuery_GET_SUBSCRIBERS_OF_PERIODICAL_ID,
-                procedureName = "GET_SUBSCRIBERS_OF_PERIODICAL_ID",
+                procedureName = "HAPPY_LIFE_PKG.GET_SUBSCRIBERS_OF_PERIODICAL_ID",
                 resultClasses = User.class,
                 parameters = {
                         @StoredProcedureParameter(type = Long.class, mode = ParameterMode.IN),

@@ -1,5 +1,4 @@
 package com.happylife.library.myspringbootproject.repository;
-
 import com.happylife.library.myspringbootproject.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -19,4 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Procedure(name = User.NamedQuery_GET_SUBSCRIBERS_OF_PERIODICAL_ID)
     List<User> get_Subscribers_Of_Periodical_Id(@Param("in_periodical_id") long id);
+
+//    @Procedure(name = User.NamedQuery_GetSubscriptions)
+//    List<SubscriptionsDTO> getSubscriptions(@Param("in_id") long id);
 }

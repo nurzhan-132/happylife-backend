@@ -14,4 +14,5 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     @Query(value = "SELECT * FROM ORDERS", nativeQuery = true)
     List<Orders> findAll();
+
 }

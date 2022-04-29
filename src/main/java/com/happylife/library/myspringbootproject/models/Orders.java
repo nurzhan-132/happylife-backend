@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(
                 name = Orders.NamedQuery_GetStatus,
-                procedureName = "GET_STATUS",
+                procedureName = "HAPPY_LIFE_PKG.GET_STATUS",
 
                 parameters = {
                         @StoredProcedureParameter(type = String.class, mode = ParameterMode.IN),

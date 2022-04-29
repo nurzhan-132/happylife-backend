@@ -1,4 +1,5 @@
 package com.happylife.library.myspringbootproject.security.services.library;
+
 import com.happylife.library.myspringbootproject.models.Periodical;
 import com.happylife.library.myspringbootproject.models.User;
 import com.happylife.library.myspringbootproject.payload.request.PostNewPeriodicalRequest;
@@ -117,4 +118,25 @@ public class LibraryServiceImpl implements LibraryService {
     public void unsubscribeFrom(Long periodicalId, String username) {
         periodicalRepository.unsubscribeFrom(periodicalId, username);
     }
+
+    @Override
+    public void deletePeriodical(Long periodicalId) {
+        periodicalRepository.deletePeriodical(periodicalId);
+    }
+
+    @Override
+    public void updateAvailability(Long periodicalId) {
+        periodicalRepository.updateAvailability(periodicalId);
+    }
+
+    @Override
+    public String showImpl() {
+        return "initial";
+    }
+
+//    @Override
+//    @Transactional
+//    public List<SubscriptionsDTO> getSubscriptions(long id) {
+//        return userRepository.getSubscriptions(id);
+//    }
 }

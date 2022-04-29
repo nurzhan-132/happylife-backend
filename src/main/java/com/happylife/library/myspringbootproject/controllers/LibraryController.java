@@ -7,8 +7,8 @@ import com.happylife.library.myspringbootproject.payload.request.SubscribeReques
 import com.happylife.library.myspringbootproject.payload.response.MessageResponse;
 import com.happylife.library.myspringbootproject.security.services.library.LibraryService;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +20,13 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/test")
-public class TestController {
+@Log4j2
+public class LibraryController {
 
     private final LibraryService libraryService;
 
-    public TestController(@Autowired LibraryService libraryService) {
+
+    public LibraryController(@Autowired LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
@@ -52,12 +54,14 @@ public class TestController {
     }
 
     @PostMapping("/post-new")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
     public ResponseEntity<?> postNewPeriodical(@RequestParam String publisher,
                                                @RequestParam String name,
                                                @RequestParam String description,
                                                @RequestParam String available,
                                                @RequestParam MultipartFile file) throws IOException {
+
+        log.info("In {}, {}, {}, {}", name, publisher, description, available);
 
         PostNewPeriodicalRequest request = new PostNewPeriodicalRequest(
                 publisher,
@@ -107,4 +111,28 @@ public class TestController {
         return ResponseEntity.ok().body(subscribersList);
     }
 
+    @DeleteMapping("/delete-periodical/{id}")
+    public ResponseEntity<?> deletePeriodical(@PathVariable(value = "id") Long id) {
+
+        libraryService.deletePeriodical(id);
+
+        return ResponseEntity.ok().body("deleted");
+    }
+
+    @PutMapping("/update-availability/{id}")
+    public ResponseEntity<?> updateAvailability(@PathVariable(value = "id") Long id) {
+
+        libraryService.updateAvailability(id);
+
+        return ResponseEntity.ok().body("updated");
+    }
+
+
+//    @GetMapping("/subscriptions/{id}")
+//    public ResponseEntity<?> getSubscriptions(@PathVariable(value = "id") Long id) {
+//
+//        List<SubscriptionsDTO> subscriptions = libraryService.getSubscriptions(id);
+//
+//        return ResponseEntity.ok().body(subscriptions);
+//    }
 }

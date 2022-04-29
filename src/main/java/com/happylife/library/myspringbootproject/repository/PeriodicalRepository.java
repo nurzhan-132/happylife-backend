@@ -24,4 +24,10 @@ public interface PeriodicalRepository extends JpaRepository<Periodical, Long> {
     void unsubscribeFrom(@Param("in_periodical") Long periodicalId,
                          @Param("in_username") String username);
 
+    @Procedure(name = Periodical.NamedQuery_DeletePeriodical)
+    void deletePeriodical(@Param("periodical_id") Long periodicalId);
+
+    @Procedure(name = Periodical.NamedQuery_UpdateAvailability)
+    void updateAvailability(@Param("periodical_id") Long periodicalId);
+
 }
